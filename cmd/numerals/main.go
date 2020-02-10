@@ -15,7 +15,7 @@ func main() {
 	printHeader()
 
 	// Load available systems
-	numberSystems := NumberSystems()
+	numberSystems := number.Systems()
 
 	// List available systems
 	fmt.Println("Available number systems:")
@@ -77,17 +77,6 @@ func main() {
 	fmt.Println("See you!")
 
 	return
-}
-
-// NumberSystems returns the list of available number systems
-func NumberSystems() []number.System {
-	systems := make([]number.System, 0)
-	systems = append(systems, number.NewDecimalSystem())
-	systems = append(systems, number.NewBinarySystem())
-	systems = append(systems, number.NewHexadecimalSystem())
-	systems = append(systems, number.NewRomanSystem())
-
-	return systems
 }
 
 func printHeader() {

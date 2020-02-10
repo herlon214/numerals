@@ -16,3 +16,14 @@ type System interface {
 	Encoder
 	Decoder
 }
+
+// Systems returns the list of available number systems
+func Systems() []System {
+	systems := make([]System, 0)
+	systems = append(systems, NewDecimalSystem())
+	systems = append(systems, NewBinarySystem())
+	systems = append(systems, NewHexadecimalSystem())
+	systems = append(systems, NewRomanSystem())
+
+	return systems
+}
