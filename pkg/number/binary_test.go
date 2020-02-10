@@ -23,6 +23,16 @@ func TestEncodeBinary(t *testing.T) {
 	assert.Equal(t, expected, result)
 }
 
+func BenchmarkEncodeBinary(b *testing.B) {
+	var input int64 = 123123123
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewBinarySystem()
+
+		numberSystem.Encode(input)
+	}
+}
+
 func TestDecodeBinary(t *testing.T) {
 	numberSystem := NewBinarySystem()
 
@@ -32,6 +42,16 @@ func TestDecodeBinary(t *testing.T) {
 	result, success := numberSystem.Decode(input)
 	assert.True(t, success)
 	assert.Equal(t, expected, result)
+}
+
+func BenchmarkDecodeBinary(b *testing.B) {
+	input := "111010101101011010110110011"
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewBinarySystem()
+
+		numberSystem.Decode(input)
+	}
 }
 
 func TestFailDecodeBinary(t *testing.T) {

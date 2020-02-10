@@ -23,6 +23,16 @@ func TestEncodeRoman(t *testing.T) {
 	assert.Equal(t, expected, result)
 }
 
+func BenchmarkEncodeRoman(b *testing.B) {
+	var input int64 = 2020
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewRomanSystem()
+
+		numberSystem.Encode(input)
+	}
+}
+
 func TestDecodeRoman(t *testing.T) {
 	numberSystem := NewRomanSystem()
 
@@ -39,6 +49,16 @@ func TestDecodeRoman(t *testing.T) {
 	result, success = numberSystem.Decode(input)
 	assert.True(t, success)
 	assert.Equal(t, expected, result)
+}
+
+func BenchmarkDecodeRoman(b *testing.B) {
+	input := "MMXX"
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewRomanSystem()
+
+		numberSystem.Decode(input)
+	}
 }
 
 func TestFailDecodeRoman(t *testing.T) {

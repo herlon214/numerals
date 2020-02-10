@@ -23,6 +23,16 @@ func TestEncodeDecimal(t *testing.T) {
 	assert.Equal(t, expected, result)
 }
 
+func BenchmarkEncodeDecimal(b *testing.B) {
+	var input int64 = 123123123
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewDecimalSystem()
+
+		numberSystem.Encode(input)
+	}
+}
+
 func TestDecodeDecimal(t *testing.T) {
 	numberSystem := NewDecimalSystem()
 
@@ -32,6 +42,16 @@ func TestDecodeDecimal(t *testing.T) {
 	result, success := numberSystem.Decode(input)
 	assert.True(t, success)
 	assert.Equal(t, expected, result)
+}
+
+func BenchmarkDecodeDecimal(b *testing.B) {
+	input := "123123123"
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewDecimalSystem()
+
+		numberSystem.Decode(input)
+	}
 }
 
 func TestFailDecodeDecimal(t *testing.T) {

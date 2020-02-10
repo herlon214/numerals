@@ -22,6 +22,16 @@ func TestEncodeHexadecimal(t *testing.T) {
 	assert.Equal(t, expected, result)
 }
 
+func BenchmarkEncodeHexadecimal(b *testing.B) {
+	var input int64 = 123123123
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewHexadecimalSystem()
+
+		numberSystem.Encode(input)
+	}
+}
+
 func TestDecodeHexadecimal(t *testing.T) {
 	numberSystem := NewHexadecimalSystem()
 
@@ -31,6 +41,16 @@ func TestDecodeHexadecimal(t *testing.T) {
 	result, success := numberSystem.Decode(input)
 	assert.True(t, success)
 	assert.Equal(t, expected, result)
+}
+
+func BenchmarkDecodeHexadecimal(b *testing.B) {
+	input := "756B5B3"
+
+	for n := 0; n < b.N; n++ {
+		numberSystem := NewHexadecimalSystem()
+
+		numberSystem.Decode(input)
+	}
 }
 
 func TestFailDecodeHexadecimal(t *testing.T) {
