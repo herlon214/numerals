@@ -2,10 +2,9 @@
 CLI to deal with encoding/decoding of numerals.
 
 ## Run
-To run you can just type `make run` or run `go run cmd/numerals/main.go`
-
 ```
-$ make run
+$ go get github.com/herlon214/numerals/cmd/numerals
+$ numerals
  _____ _____ _____ _____ _____ _____ __    _____
 |   | |  |  |     |   __| __  |  _  |  |  |   __|
 | | | |  |  | | | |   __|    -|     |  |__|__   |
@@ -19,6 +18,12 @@ Available number systems:
 -------------------------------------------------------------------------
 Which one do you want to use? (type the system's number)
 ```
+
+You can also clone the repo and run it using `make run` or `go run cmd/numerals/main.go`.
+
+
+## How the conversions are made
+![System's Flow](numerals.png)
 
 ## Code coverage
 ```
@@ -44,5 +49,20 @@ github.com/herlon214/numerals/pkg/number/roman.go:97:		isValid			100.0%
 total:								(statements)		100.0%
 ```
 
-## How the conversions are made
-![System's Flow](numerals.png)
+## Benchmarks
+```
+$ make bench
+goos: darwin
+goarch: amd64
+pkg: github.com/herlon214/numerals/pkg/number
+BenchmarkEncodeBinary-8        	16559230	        70.0 ns/op
+BenchmarkDecodeBinary-8        	10551765	       113 ns/op
+BenchmarkEncodeDecimal-8       	24104967	        46.7 ns/op
+BenchmarkDecodeDecimal-8       	23961109	        47.3 ns/op
+BenchmarkEncodeHexadecimal-8   	 9897879	       115 ns/op
+BenchmarkDecodeHexadecimal-8   	23189104	        46.9 ns/op
+BenchmarkEncodeRoman-8         	 5427507	       221 ns/op
+BenchmarkDecodeRoman-8         	 5762856	       209 ns/op
+PASS
+ok  	github.com/herlon214/numerals/pkg/number	10.251s
+```
