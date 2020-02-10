@@ -90,6 +90,10 @@ func (r *roman) Encode(input int64) (string, bool) {
 		i++
 	}
 
+	if outputNumber == "" {
+		return "", false
+	}
+
 	return outputNumber, true
 }
 

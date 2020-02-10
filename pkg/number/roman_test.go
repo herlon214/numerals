@@ -71,3 +71,14 @@ func TestFailDecodeRoman(t *testing.T) {
 	assert.False(t, success)
 	assert.Equal(t, expected, result)
 }
+
+func TestFailEncodeRoman(t *testing.T) {
+	numberSystem := NewRomanSystem()
+
+	var input int64 = 0
+	expected := ""
+
+	result, success := numberSystem.Encode(input)
+	assert.False(t, success)
+	assert.Equal(t, expected, result)
+}
